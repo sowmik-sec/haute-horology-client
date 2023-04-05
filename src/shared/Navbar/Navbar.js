@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const location = useLocation();
   const handleLogOut = () => {
     logout()
       .then(() => {})
@@ -34,16 +35,55 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="/">Home</Link>
+              <Link
+                to="/"
+                className={`${
+                  location.pathname === "/" && "bg-gray-700 text-white"
+                }`}
+              >
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/">Watch Collections</Link>
+              <Link
+                to="/"
+                className={`${
+                  location.pathname === "/brands" && "bg-gray-700 text-white"
+                }`}
+              >
+                Brands
+              </Link>
             </li>
             <li>
-              <Link to="/">About</Link>
+              <Link
+                to="/"
+                className={`${
+                  location.pathname === "/watch-collections" &&
+                  "bg-gray-700 text-white"
+                }`}
+              >
+                Watch Collections
+              </Link>
             </li>
             <li>
-              <Link to="/">Dashboard</Link>
+              <Link
+                to="/"
+                className={`${
+                  location.pathname === "/about" && "bg-gray-700 text-white"
+                }`}
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className={`${
+                  location.pathname === "/dashboard" && "bg-gray-700 text-white"
+                }`}
+              >
+                Dashboard
+              </Link>
             </li>
             {user ? (
               <li>
@@ -51,7 +91,14 @@ const Navbar = () => {
               </li>
             ) : (
               <li>
-                <Link to="/login">Login</Link>
+                <Link
+                  to="/login"
+                  className={`${
+                    location.pathname === "/login" && "bg-gray-700 text-white"
+                  }`}
+                >
+                  Login
+                </Link>
               </li>
             )}
           </ul>
@@ -63,16 +110,55 @@ const Navbar = () => {
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <Link
+              to="/"
+              className={`${
+                location.pathname === "/" && "bg-gray-700 text-white"
+              }`}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/">Watch Collections</Link>
+            <Link
+              to="/"
+              className={`${
+                location.pathname === "/brands" && "bg-gray-700 text-white"
+              }`}
+            >
+              Brands
+            </Link>
           </li>
           <li>
-            <Link to="/">About</Link>
+            <Link
+              to="/"
+              className={`${
+                location.pathname === "/watch-collections" &&
+                "bg-gray-700 text-white"
+              }`}
+            >
+              Watch Collections
+            </Link>
           </li>
           <li>
-            <Link to="/">Dashboard</Link>
+            <Link
+              to="/"
+              className={`${
+                location.pathname === "/about" && "bg-gray-700 text-white"
+              }`}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/"
+              className={`${
+                location.pathname === "/dashboard" && "bg-gray-700 text-white"
+              }`}
+            >
+              Dashboard
+            </Link>
           </li>
           {user ? (
             <li>
@@ -80,7 +166,14 @@ const Navbar = () => {
             </li>
           ) : (
             <li>
-              <Link to="/login">Login</Link>
+              <Link
+                to="/login"
+                className={`${
+                  location.pathname === "/login" && "bg-gray-700 text-white"
+                }`}
+              >
+                Login
+              </Link>
             </li>
           )}
         </ul>
