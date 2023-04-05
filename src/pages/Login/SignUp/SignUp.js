@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const SignUp = () => {
+  const { createUser, aaa } = useContext(AuthContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,7 +11,13 @@ const SignUp = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(firstName, lastName, email, password);
+    console.log(aaa, email, password);
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -67,7 +75,7 @@ const SignUp = () => {
         <input
           className="btn btn-primary mt-3 w-full"
           type="submit"
-          value="Login"
+          value="Sign Up"
         />
       </form>
 
