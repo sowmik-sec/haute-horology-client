@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { googleSignIn, signIn } = useContext(AuthContext);
+  const { googleSignIn, signIn, resetPassword } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -24,6 +25,14 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         navigate(from, { replace: true });
+      })
+      .catch((err) => setError(err.message));
+  };
+
+  const handleResetPassword = () => {
+    resetPassword(email)
+      .then(() => {
+        toast.success("Password reset email sent. Check inbox");
       })
       .catch((err) => setError(err.message));
   };
@@ -56,7 +65,10 @@ const Login = () => {
             className="input input-bordered w-full max-w-xs"
           />
         </div>
-        <Link className="text-sm text-blue-500 hover:text-blue-700">
+        <Link
+          onClick={handleResetPassword}
+          className="text-sm text-blue-500 hover:text-blue-700"
+        >
           Forgot password?
         </Link>
         {error && <p className="text-error">{error}</p>}
