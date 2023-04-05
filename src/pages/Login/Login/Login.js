@@ -5,10 +5,12 @@ import { AuthContext } from "../../../context/AuthProvider";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { googleSignIn } = useContext(AuthContext);
+  const { googleSignIn, signIn } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    signIn(email, password)
+      .then(() => {})
+      .catch((err) => console.error(err));
   };
   const handleGoogleSignIn = () => {
     googleSignIn()
