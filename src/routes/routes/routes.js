@@ -3,6 +3,7 @@ import Main from "../../layouts/Main";
 import Login from "../../pages/Login/Login/Login";
 import SignUp from "../../pages/Login/SignUp/SignUp";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import Brands from "../../pages/Brands/Brands";
 
 const routes = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const routes = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/brands",
+        element: <Brands />,
+        loader: () => fetch(`http://localhost:5000/brands`),
       },
     ],
   },

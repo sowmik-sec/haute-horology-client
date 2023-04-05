@@ -46,7 +46,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/brands"
                 className={`${
                   location.pathname === "/brands" && "bg-gray-700 text-white"
                 }`}
@@ -121,7 +121,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              to="/"
+              to="/brands"
               className={`${
                 location.pathname === "/brands" && "bg-gray-700 text-white"
               }`}
