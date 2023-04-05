@@ -5,12 +5,13 @@ import { AuthContext } from "../../../context/AuthProvider";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { googleSignIn, signIn } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     signIn(email, password)
       .then(() => {})
-      .catch((err) => console.error(err));
+      .catch((err) => setError(err.message));
   };
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -18,7 +19,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => setError(err.message));
   };
 
   return (
@@ -52,6 +53,7 @@ const Login = () => {
         <Link className="text-sm text-blue-500 hover:text-blue-700">
           Forgot password?
         </Link>
+        {error && <p className="text-error">{error}</p>}
         <input
           className="btn btn-primary mt-3 w-full"
           type="submit"

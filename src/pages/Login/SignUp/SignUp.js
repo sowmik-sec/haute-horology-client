@@ -8,6 +8,7 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const SignUp = () => {
           })
           .catch((err) => console.error(err));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => setError(err.message));
   };
 
   const handleGoogleSignIn = () => {
@@ -34,7 +35,7 @@ const SignUp = () => {
         const user = result.user;
         console.log(user);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => setError(err.message));
   };
 
   return (
@@ -89,6 +90,7 @@ const SignUp = () => {
             className="input input-bordered w-full max-w-xs"
           />
         </div>
+        {error && <p className="text-error">{error}</p>}
         <input
           className="btn btn-primary mt-3 w-full"
           type="submit"
