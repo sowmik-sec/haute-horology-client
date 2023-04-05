@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const { googleSignIn } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(email, password);
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -55,7 +64,10 @@ const Login = () => {
             Create an account
           </Link>
         </p>
-        <button className="btn btn-outline mt-3 w-full">
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn btn-outline mt-3 w-full"
+        >
           Continue with google
         </button>
       </div>

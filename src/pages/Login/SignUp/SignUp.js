@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const SignUp = () => {
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,6 +24,15 @@ const SignUp = () => {
             setPassword("");
           })
           .catch((err) => console.error(err));
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
       })
       .catch((err) => console.error(err));
   };
@@ -94,7 +103,10 @@ const SignUp = () => {
             Login
           </Link>
         </p>
-        <button className="btn btn-outline mt-3 w-full">
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn btn-outline mt-3 w-full"
+        >
           Continue with google
         </button>
       </div>
