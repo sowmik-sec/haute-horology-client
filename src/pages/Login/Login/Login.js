@@ -24,9 +24,25 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
+        user(result.user.displayName, result.user.email, "buyer");
         navigate(from, { replace: true });
       })
       .catch((err) => setError(err.message));
+  };
+
+  const user = (name, email, role) => {
+    const mkUser = { name, email, role };
+    fetch(`http://localhost:5000/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mkUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   const handleResetPassword = () => {

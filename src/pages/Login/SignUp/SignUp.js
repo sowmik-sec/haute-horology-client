@@ -53,6 +53,7 @@ const SignUp = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
+        user(result.user.displayName, result.user.email, "buyer");
         navigate(from, { replace: true });
       })
       .catch((err) => setError(err.message));
