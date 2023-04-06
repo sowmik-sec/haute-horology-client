@@ -7,13 +7,7 @@ import { useQuery } from "react-query";
 const Brands = () => {
   //   const [brands, setBrands] = useState([]);
 
-  const {
-    isLoading,
-    isError,
-    data: brands,
-    error,
-    refetch,
-  } = useQuery({
+  const { isLoading, data: brands } = useQuery({
     queryKey: "brands",
     queryFn: () =>
       fetch(`http://localhost:5000/brands`).then((res) => res.json()),
