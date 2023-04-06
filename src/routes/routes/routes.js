@@ -4,6 +4,8 @@ import Login from "../../pages/Login/Login/Login";
 import SignUp from "../../pages/Login/SignUp/SignUp";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import Brands from "../../pages/Brands/Brands";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import DashboardLayout from "../../layouts/DashboardLayout";
 
 const routes = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const routes = createBrowserRouter([
         element: <Brands />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
   },
   {
     path: "*",
