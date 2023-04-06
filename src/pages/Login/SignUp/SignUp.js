@@ -1,22 +1,27 @@
 import React, { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
+import useToken from "../../../hooks/useToken";
 
 const SignUp = () => {
   const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [createdEmail, setCreatedEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const location = useLocation();
+  const [token] = useToken(createdEmail);
+  // const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
-
+  // const from = location.state?.from?.pathname || "/";
+  if (token) {
+    navigate("/");
+  }
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(firstName, lastName, email, password, e.target.role.value);
-    user(firstName + " " + lastName, email, e.target.role.value);
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -24,18 +29,20 @@ const SignUp = () => {
         updateUser(firstName, lastName)
           .then(() => {
             console.log("Profile Updated");
-            setFirstName("");
-            setLastName("");
-            setEmail("");
-            setPassword("");
-            navigate(from, { replace: true });
+            userFn(firstName + " " + lastName, email, e.target.role.value);
+            setCreatedEmail(email);
+            // setFirstName("");
+            // setLastName("");
+            // setEmail("");
+            // setPassword("");
+            // navigate(from, { replace: true });
           })
           .catch((err) => console.error(err));
       })
       .catch((err) => setError(err.message));
   };
 
-  const user = (name, email, role) => {
+  const userFn = (name, email, role) => {
     const mkUser = { name, email, role };
     fetch(`http://localhost:5000/users`, {
       method: "POST",
@@ -53,8 +60,9 @@ const SignUp = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        user(result.user.displayName, result.user.email, "buyer");
-        navigate(from, { replace: true });
+        userFn(result.user.displayName, result.user.email, "buyer");
+        setCreatedEmail(result.user.email);
+        // navigate(from, { replace: true });
       })
       .catch((err) => setError(err.message));
   };
