@@ -15,6 +15,8 @@ const SignUp = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log(firstName, lastName, email, password, e.target.role.value);
+    user(firstName + " " + lastName, email, e.target.role.value);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -31,6 +33,21 @@ const SignUp = () => {
           .catch((err) => console.error(err));
       })
       .catch((err) => setError(err.message));
+  };
+
+  const user = (name, email, role) => {
+    const mkUser = { name, email, role };
+    fetch(`http://localhost:5000/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mkUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   const handleGoogleSignIn = () => {
@@ -92,6 +109,15 @@ const SignUp = () => {
             value={password}
             className="input input-bordered w-full max-w-xs"
           />
+        </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Choose a role</span>
+          </label>
+          <select name="role" id="" className="select select-bordered w-full">
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+          </select>
         </div>
         {error && <p className="text-error">{error}</p>}
         <input
