@@ -1,8 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   const handleAddProduct = (data) => {
     const watch = {
       model: data.model,
@@ -14,7 +17,20 @@ const AddProduct = () => {
       description: data.description,
       purchase: data.purchase,
     };
-    console.log(watch);
+    fetch(`http://localhost:5000/watches`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(watch),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Watch added successfully");
+          navigate("/dashboard/my-products");
+        }
+      });
   };
   return (
     <form onSubmit={handleSubmit(handleAddProduct)} className="my-10">
