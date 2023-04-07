@@ -6,6 +6,7 @@ import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import Brands from "../../pages/Brands/Brands";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashboardLayout from "../../layouts/DashboardLayout";
+import AddProduct from "../../pages/Dashboard/AddProduct/AddProduct";
 
 const routes = createBrowserRouter([
   {
@@ -33,6 +34,12 @@ const routes = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "add-product",
+        element: <AddProduct />,
+      },
+    ],
   },
   {
     path: "*",
