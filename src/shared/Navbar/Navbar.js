@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 
 const Navbar = () => {
@@ -14,53 +14,19 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li>
-        <Link
-          to="/"
-          className={`${location.pathname === "/" && "bg-gray-700 text-white"}`}
-        >
-          Home
-        </Link>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <Link
-          to="/brands"
-          className={`${
-            location.pathname === "/brands" && "bg-gray-700 text-white"
-          }`}
-        >
-          Brands
-        </Link>
+        <NavLink to="/brands">Brands</NavLink>
       </li>
       <li>
-        <Link
-          to="/"
-          className={`${
-            location.pathname === "/watch-collections" &&
-            "bg-gray-700 text-white"
-          }`}
-        >
-          Watch Collections
-        </Link>
+        <NavLink to="/">Watch Collections</NavLink>
       </li>
       <li>
-        <Link
-          to="/"
-          className={`${
-            location.pathname === "/about" && "bg-gray-700 text-white"
-          }`}
-        >
-          About
-        </Link>
+        <NavLink to="/">About</NavLink>
       </li>
       <li>
-        <Link
-          to="/dashboard"
-          className={`${
-            location.pathname === "/dashboard" && "bg-gray-700 text-white"
-          }`}
-        >
-          Dashboard
-        </Link>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
       {user ? (
         <li>
@@ -68,14 +34,7 @@ const Navbar = () => {
         </li>
       ) : (
         <li>
-          <Link
-            to="/login"
-            className={`${
-              location.pathname === "/login" && "bg-gray-700 text-white"
-            }`}
-          >
-            Login
-          </Link>
+          <NavLink to="/login">Login</NavLink>
         </li>
       )}
     </>
@@ -107,9 +66,9 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <NavLink to="/" className="btn btn-ghost normal-case text-xl">
           Houte Horology Hub
-        </Link>
+        </NavLink>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{menuItems}</ul>
