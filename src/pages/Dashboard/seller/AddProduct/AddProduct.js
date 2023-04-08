@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../../context/AuthProvider";
 
 const AddProduct = () => {
   const { register, handleSubmit } = useForm();
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleAddProduct = (data) => {
     const watch = {
+      sellerEmail: user.email,
       model: data.model,
+      watchImg: data.watchImg,
       price: data.price,
       condition: data.condition,
       mobile: data.mobile,
@@ -29,7 +33,7 @@ const AddProduct = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Watch added successfully");
-          navigate("/dashboard/my-products");
+          navigate("/dashboard/my-watches");
         }
       });
   };
@@ -43,6 +47,17 @@ const AddProduct = () => {
           type="text"
           placeholder="Watch Model"
           {...register("model")}
+          className="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div className="form-control w-full max-w-xs">
+        <label className="label">
+          <span className="label-text">Photo URL</span>
+        </label>
+        <input
+          type="text"
+          placeholder="Photo URL"
+          {...register("watchImg")}
           className="input input-bordered w-full max-w-xs"
         />
       </div>
