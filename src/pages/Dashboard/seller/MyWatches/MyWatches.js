@@ -1,23 +1,45 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../../../../context/AuthProvider";
+import { useQuery } from "react-query";
+import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 
 const MyWatches = () => {
-  const [watches, setWatches] = useState([]);
+  //   const [watches, setWatches] = useState([]);
   const { user } = useContext(AuthContext);
-  useEffect(() => {
-    fetch(`http://localhost:5000/watches?email=${user.email}`, {
+  const {
+    isLoading,
+    data: watches,
+    refetch,
+  } = useQuery({
+    queryKey: ["watches", user.email],
+    queryFn: () =>
+      fetch(`http://localhost:5000/watches?email=${user.email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => res.json()),
+  });
+  if (isLoading) {
+    return <LoaderSpinner />;
+  }
+  console.log(watches);
+  const handleAdvertise = (id) => {
+    fetch(`http://localhost:5000/watches/${id}`, {
+      method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
-      .then((data) => setWatches(data));
-  }, [user.email]);
-  console.log(watches);
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          refetch();
+        }
+      });
+  };
   return (
     <div className="overflow-x-auto mt-6">
       <table className="table w-full">
-        {/* head */}
         <thead>
           <tr>
             <th></th>
@@ -42,10 +64,15 @@ const MyWatches = () => {
                 )}
               </td>
               <td>
-                {watch?.status !== "sold" && watch?.advertise !== true ? (
-                  <button className="btn btn-xs btn-primary">Advertise</button>
+                {watch?.status !== "sold" && watch?.isAdvertised !== true ? (
+                  <button
+                    onClick={() => handleAdvertise(watch._id)}
+                    className="btn btn-xs btn-primary"
+                  >
+                    Advertise
+                  </button>
                 ) : (
-                  ""
+                  <p className="text-emerald-600">Advertised</p>
                 )}
               </td>
               <td>
