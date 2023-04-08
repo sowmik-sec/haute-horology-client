@@ -3,18 +3,22 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import useSeller from "../../hooks/useSeller";
 import useAdmin from "../../hooks/useAdmin";
+import LoaderSpinner from "./LoaderSpinner/LoaderSpinner";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [isSeller, isSellerLoading] = useSeller(user?.email);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const location = useLocation();
+  if (isSellerLoading || isAdminLoading) {
+    return <LoaderSpinner />;
+  }
+
   const handleLogOut = () => {
     logout()
       .then(() => {})
       .catch((err) => console.error(err));
   };
-  console.log(location.pathname);
   const menuItems = (
     <>
       <li>
@@ -32,7 +36,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to={`/dashboard/${
-            isSeller ? "my-watches" : isAdmin ? "all-sellers" : ""
+            isSeller ? "my-watches" : isAdmin ? "all-sellers" : "my-orders"
           }`}
         >
           Dashboard

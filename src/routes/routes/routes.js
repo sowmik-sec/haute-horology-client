@@ -9,6 +9,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import AddProduct from "../../pages/Dashboard/seller/AddProduct/AddProduct";
 import MyWatches from "../../pages/Dashboard/seller/MyWatches/MyWatches";
 import BrandItems from "../../pages/Brands/BrandItems";
+import MyOrders from "../../pages/Dashboard/buyer/MYOrders/MyOrders";
 
 const routes = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const routes = createBrowserRouter([
       {
         path: "my-watches",
         element: <MyWatches />,
+      },
+      {
+        path: "my-orders",
+        element: <MyOrders />,
       },
     ],
   },

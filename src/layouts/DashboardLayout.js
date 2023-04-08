@@ -5,12 +5,17 @@ import { AuthContext } from "../context/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useSeller from "../hooks/useSeller";
 import "./DashboardLayout.css";
+import useBuyer from "../hooks/useBuyer";
+import LoaderSpinner from "../shared/Navbar/LoaderSpinner/LoaderSpinner";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const [isSeller, isSellerLoading] = useSeller(user?.email);
-
+  const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
+  if (isAdminLoading || isSellerLoading || isBuyerLoading) {
+    return <LoaderSpinner />;
+  }
   return (
     <div>
       <Navbar />
@@ -49,6 +54,13 @@ const DashboardLayout = () => {
                 </li>
                 <li>
                   <NavLink>Reported Items</NavLink>
+                </li>
+              </>
+            )}
+            {isBuyer && (
+              <>
+                <li>
+                  <NavLink to={`my-orders`}>My Orders</NavLink>
                 </li>
               </>
             )}
