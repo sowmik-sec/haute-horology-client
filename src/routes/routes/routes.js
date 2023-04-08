@@ -8,6 +8,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import AddProduct from "../../pages/Dashboard/seller/AddProduct/AddProduct";
 import MyWatches from "../../pages/Dashboard/seller/MyWatches/MyWatches";
+import BrandItems from "../../pages/Brands/BrandItems";
 
 const routes = createBrowserRouter([
   {
@@ -25,6 +26,16 @@ const routes = createBrowserRouter([
       {
         path: "/brands",
         element: <Brands />,
+      },
+      {
+        path: "/brands/:brand",
+        element: <BrandItems />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/watches/brand/${params.brand}`, {
+            headers: {
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }),
       },
     ],
   },

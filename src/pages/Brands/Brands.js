@@ -20,7 +20,7 @@ const Brands = () => {
     <div className="my-14 mx-14 grid gap-10 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
       {brands &&
         brands.map((brand) => (
-          <Link key={brand._id} to={`/brands/${brand._id}`}>
+          <Link key={brand._id} to={`/brands/${brand.brand}`}>
             <Brand brand={brand} />
           </Link>
         ))}
