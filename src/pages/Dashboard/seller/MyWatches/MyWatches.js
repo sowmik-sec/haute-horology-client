@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../../context/AuthProvider";
 import { useQuery } from "react-query";
 import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
+import { toast } from "react-hot-toast";
 
 const MyWatches = () => {
   //   const [watches, setWatches] = useState([]);
@@ -33,6 +34,21 @@ const MyWatches = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
+          refetch();
+        }
+      });
+  };
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/watches/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Watch Deleted");
           refetch();
         }
       });
@@ -77,7 +93,12 @@ const MyWatches = () => {
               </td>
               <td>
                 {watch?.status !== "sold" ? (
-                  <button className="btn btn-xs btn-error">Delete</button>
+                  <button
+                    onClick={() => handleDelete(watch._id)}
+                    className="btn btn-xs btn-error"
+                  >
+                    Delete
+                  </button>
                 ) : (
                   ""
                 )}
