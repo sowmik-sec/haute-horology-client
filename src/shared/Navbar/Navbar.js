@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import useSeller from "../../hooks/useSeller";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [isSeller, isSellerLoading] = useSeller(user?.email);
+  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const location = useLocation();
   const handleLogOut = () => {
     logout()
@@ -26,7 +30,13 @@ const Navbar = () => {
         <NavLink to="/">About</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink
+          to={`/dashboard/${
+            isSeller ? "my-watches" : isAdmin ? "all-sellers" : ""
+          }`}
+        >
+          Dashboard
+        </NavLink>
       </li>
       {user ? (
         <li>
