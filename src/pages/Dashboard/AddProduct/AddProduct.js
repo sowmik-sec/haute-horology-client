@@ -21,6 +21,7 @@ const AddProduct = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(watch),
     })
@@ -33,7 +34,7 @@ const AddProduct = () => {
       });
   };
   return (
-    <form onSubmit={handleSubmit(handleAddProduct)} className="my-10">
+    <form onSubmit={handleSubmit(handleAddProduct)} className="my-10 mx-10">
       <div className="form-control w-full max-w-xs">
         <label className="label">
           <span className="label-text">Watch Model</span>
