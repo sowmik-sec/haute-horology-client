@@ -29,10 +29,10 @@ const DashboardLayout = () => {
             {isSeller && (
               <>
                 <li>
-                  <NavLink to={`my-products`}>My Products</NavLink>
+                  <NavLink to={`my-watches`}>My Watches</NavLink>
                 </li>
                 <li>
-                  <NavLink to={`add-product`}>Add Product</NavLink>
+                  <NavLink to={`add-watch`}>Add Watch</NavLink>
                 </li>
                 <li>
                   <NavLink to={`my-buyers`}>My buyers</NavLink>

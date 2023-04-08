@@ -6,7 +6,8 @@ import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import Brands from "../../pages/Brands/Brands";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashboardLayout from "../../layouts/DashboardLayout";
-import AddProduct from "../../pages/Dashboard/AddProduct/AddProduct";
+import AddProduct from "../../pages/Dashboard/seller/AddProduct/AddProduct";
+import MyWatches from "../../pages/Dashboard/seller/MyWatches/MyWatches";
 
 const routes = createBrowserRouter([
   {
@@ -36,8 +37,12 @@ const routes = createBrowserRouter([
     ),
     children: [
       {
-        path: "add-product",
+        path: "add-watch",
         element: <AddProduct />,
+      },
+      {
+        path: "my-watches",
+        element: <MyWatches />,
       },
     ],
   },
