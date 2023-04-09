@@ -47,13 +47,13 @@ const DashboardLayout = () => {
             {isAdmin && (
               <>
                 <li>
-                  <NavLink>All Sellers</NavLink>
+                  <NavLink to={`all-sellers`}>All Sellers</NavLink>
                 </li>
                 <li>
-                  <NavLink>All Buyers</NavLink>
+                  <NavLink to={`all-buyers`}>All Buyers</NavLink>
                 </li>
                 <li>
-                  <NavLink>Reported Items</NavLink>
+                  <NavLink to={`reported-items`}>Reported Items</NavLink>
                 </li>
               </>
             )}

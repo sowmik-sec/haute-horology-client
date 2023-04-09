@@ -42,7 +42,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/brands/:brand/:id",
-        element: <BrandItemDetails />,
+        element: (
+          <PrivateRoute>
+            <BrandItemDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/watch-collection",
@@ -60,15 +64,27 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "add-watch",
-        element: <AddProduct />,
+        element: (
+          <PrivateRoute>
+            <AddProduct />
+          </PrivateRoute>
+        ),
       },
       {
         path: "my-watches",
-        element: <MyWatches />,
+        element: (
+          <PrivateRoute>
+            <MyWatches />
+          </PrivateRoute>
+        ),
       },
       {
         path: "my-orders",
-        element: <MyOrders />,
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
       },
     ],
   },
