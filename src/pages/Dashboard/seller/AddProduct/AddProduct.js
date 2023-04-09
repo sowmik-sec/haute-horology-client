@@ -13,7 +13,8 @@ const AddProduct = () => {
       sellerEmail: user.email,
       model: data.model,
       watchImg: data.watchImg,
-      price: data.price,
+      rPrice: data.rPrice,
+      oPrice: data.oPrice,
       condition: data.condition,
       mobile: data.mobile,
       location: data.location,
@@ -63,12 +64,23 @@ const AddProduct = () => {
       </div>
       <div className="form-control w-full max-w-xs">
         <label className="label">
-          <span className="label-text">Price</span>
+          <span className="label-text">Original Price</span>
         </label>
         <input
           type="text"
-          placeholder="Price"
-          {...register("price")}
+          placeholder="Original Price"
+          {...register("oPrice")}
+          className="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div className="form-control w-full max-w-xs">
+        <label className="label">
+          <span className="label-text">Resell Price</span>
+        </label>
+        <input
+          type="text"
+          placeholder="Resell Price"
+          {...register("rPrice")}
           className="input input-bordered w-full max-w-xs"
         />
       </div>

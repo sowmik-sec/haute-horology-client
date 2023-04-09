@@ -10,8 +10,11 @@ const BrandItem = ({ item }) => {
         <div className="card-body">
           <h2 className="card-title">{item.model}</h2>
           <p>{item.description.slice(0, 30)}...</p>
+          <div className="card-actions">
+            <h3 className="text-xl">Original Price:${item.oPrice}</h3>
+            <h3 className="text-xl">Resell Price: ${item.rPrice}</h3>
+          </div>
           <div className="card-actions justify-around">
-            <h3 className="text-3xl">${item.price}</h3>
             <button className="btn btn-primary">Buy Now</button>
           </div>
         </div>
