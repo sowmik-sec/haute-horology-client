@@ -20,6 +20,7 @@ const BookingModal = ({ watch, setControlModal }) => {
       model: watch.model,
       brand: watch.brand,
       price: watch.rPrice,
+      paymentStatus: "unpaid",
     };
     fetch(`http://localhost:5000/watch/buy`, {
       method: "POST", // or 'PUT'
