@@ -21,6 +21,7 @@ const AddProduct = () => {
       brand: data.brand,
       description: data.description,
       purchase: data.purchase,
+      status: "unsold",
     };
     fetch(`http://localhost:5000/watches`, {
       method: "POST",
