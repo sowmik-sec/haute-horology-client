@@ -16,7 +16,7 @@ const BrandItem = ({ item }) => {
             <h3 className="text-xl">Resell Price: ${item.rPrice}</h3>
           </div>
           <div className="card-actions justify-around">
-            <Link to={`${item._id}`}>
+            <Link to={`/brands/${item.brand}/${item._id}`}>
               <button className="btn btn-primary">Shop Now</button>
             </Link>
           </div>
