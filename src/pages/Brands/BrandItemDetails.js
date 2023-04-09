@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import LoaderSpinner from "../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 import { useQuery } from "react-query";
+import BookingModal from "./BookingModal/BookingModal";
 
 const BrandItemDetails = () => {
+  const [controlModal, setControlModal] = useState(true);
   const location = useLocation();
   const path = location.pathname.split("/");
   const watchId = path[path.length - 1];
@@ -32,11 +34,19 @@ const BrandItemDetails = () => {
               <p>Resell Price: ${watchDetails.rPrice}</p>
               <p>Purchased: {watchDetails.purchase}</p>
             </div>
-            <button className="btn btn-primary">Book Now</button>
+            <label
+              htmlFor="booking-modal"
+              className="btn btn-primary text-white"
+            >
+              Book Now
+            </label>
           </div>
         </div>
       </div>
       <p className="w-2/3 mx-auto my-6">{watchDetails.description}</p>
+      {controlModal && (
+        <BookingModal watch={watchDetails} setControlModal={setControlModal} />
+      )}
     </div>
   );
 };

@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
   const updateUser = (firstName, lastName) => {
-    const profile = { firstName, lastName };
+    const profile = { displayName: firstName + lastName };
     return updateProfile(auth.currentUser, profile);
   };
   useEffect(() => {
