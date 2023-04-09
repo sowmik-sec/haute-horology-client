@@ -10,6 +10,7 @@ import AddProduct from "../../pages/Dashboard/seller/AddProduct/AddProduct";
 import MyWatches from "../../pages/Dashboard/seller/MyWatches/MyWatches";
 import BrandItems from "../../pages/Brands/BrandItems";
 import MyOrders from "../../pages/Dashboard/buyer/MYOrders/MyOrders";
+import BrandItemDetails from "../../pages/Brands/BrandItemDetails";
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
               authorization: `bearer ${localStorage.getItem("accessToken")}`,
             },
           }),
+      },
+      {
+        path: "/brands/:brand/:id",
+        element: <BrandItemDetails />,
       },
     ],
   },

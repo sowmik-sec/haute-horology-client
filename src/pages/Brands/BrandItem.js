@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BrandItem = ({ item }) => {
   return (
@@ -15,7 +16,9 @@ const BrandItem = ({ item }) => {
             <h3 className="text-xl">Resell Price: ${item.rPrice}</h3>
           </div>
           <div className="card-actions justify-around">
-            <button className="btn btn-primary">Buy Now</button>
+            <Link to={`${item._id}`}>
+              <button className="btn btn-primary">Shop Now</button>
+            </Link>
           </div>
         </div>
       </div>
