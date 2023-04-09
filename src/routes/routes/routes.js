@@ -11,6 +11,7 @@ import MyWatches from "../../pages/Dashboard/seller/MyWatches/MyWatches";
 import BrandItems from "../../pages/Brands/BrandItems";
 import MyOrders from "../../pages/Dashboard/buyer/MYOrders/MyOrders";
 import BrandItemDetails from "../../pages/Brands/BrandItemDetails";
+import WatchCollections from "../../pages/WatchCollections/WatchCollections";
 
 const routes = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const routes = createBrowserRouter([
       {
         path: "/brands/:brand/:id",
         element: <BrandItemDetails />,
+      },
+      {
+        path: "/watch-collection",
+        element: <WatchCollections />,
       },
     ],
   },
