@@ -2,10 +2,15 @@ import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import { AuthContext } from "../../../../context/AuthProvider";
 import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
+import { toast } from "react-hot-toast";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
-  const { isLoading, data: orders } = useQuery({
+  const {
+    isLoading,
+    data: orders,
+    refetch,
+  } = useQuery({
     queryKey: ["my-orders", user?.email],
     queryFn: () =>
       fetch(`http://localhost:5000/my-orders?email=${user?.email}`, {
@@ -28,6 +33,22 @@ const MyOrders = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
+          updateWatchStatus(order.watchId);
+        }
+      });
+  };
+  const updateWatchStatus = (id) => {
+    fetch(`http://localhost:5000/my-orders/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Order Deleted Successfully");
+          refetch();
         }
       });
   };
