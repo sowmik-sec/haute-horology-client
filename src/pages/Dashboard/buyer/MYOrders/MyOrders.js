@@ -18,6 +18,19 @@ const MyOrders = () => {
   if (isLoading) {
     return <LoaderSpinner />;
   }
+  const handleDelete = (order) => {
+    fetch(`http://localhost:5000/my-orders/${order._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+        }
+      });
+  };
   return (
     <div>
       <h1 className="text-4xl">My Orders</h1>
@@ -47,7 +60,12 @@ const MyOrders = () => {
                 </td>
                 <td>
                   {order.paymentStatus === "unpaid" ? (
-                    <button className="btn btn-error btn-sm">Delete</button>
+                    <button
+                      onClick={() => handleDelete(order)}
+                      className="btn btn-error btn-sm"
+                    >
+                      Delete
+                    </button>
                   ) : (
                     ""
                   )}
