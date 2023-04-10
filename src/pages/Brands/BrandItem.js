@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BrandItem = ({ item }) => {
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+      <div className="card w-96 h-[500px] bg-base-100 shadow-xl mx-auto">
         <figure>
           <img src={item.watchImg} alt="Shoes" className="h-60" />
         </figure>
