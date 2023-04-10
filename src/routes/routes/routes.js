@@ -18,6 +18,7 @@ import AllBuyers from "../../pages/Dashboard/admin/AllBuyers/AllBuyers";
 import ReportedItems from "../../pages/Dashboard/admin/ReportedItems/ReportedItems";
 import Payment from "../../pages/Dashboard/buyer/Payment/Payment";
 import DisplayError from "../../shared/DisplayError/DisplayError";
+import Home from "../../pages/Home/Home/Home";
 
 const routes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const routes = createBrowserRouter([
     element: <Main />,
     errorElement: <DisplayError />,
     children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
       {
         path: "/login",
         element: <Login />,
