@@ -4,7 +4,7 @@ import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner
 
 const ReportedItems = () => {
   const { isLoading, data: reported } = useQuery({
-    queryKey: [],
+    queryKey: ["reported-items"],
     queryFn: () =>
       fetch(`http://localhost:5000/reported-items`, {
         headers: {

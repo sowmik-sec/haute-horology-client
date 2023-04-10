@@ -4,7 +4,7 @@ import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner
 
 const AllBuyers = () => {
   const { isLoading, data: buyers } = useQuery({
-    queryKey: [],
+    queryKey: ["buyers-all"],
     queryFn: () =>
       fetch(`http://localhost:5000/buyers-all`, {
         headers: {
