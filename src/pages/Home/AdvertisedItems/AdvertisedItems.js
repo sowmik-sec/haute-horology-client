@@ -16,7 +16,7 @@ const AdvertisedItems = () => {
     return <LoaderSpinner />;
   }
   return (
-    <div>
+    <div className="my-10">
       {advertised && (
         <>
           <h3 className="text-3xl my-5 ml-3 font-bold">Advertised Items</h3>
@@ -26,7 +26,7 @@ const AdvertisedItems = () => {
             ))}
           </div>
           <div className="text-center">
-            <Link to={`/advertised-all`}>
+            <Link to={`/advertise-all`}>
               <button className="btn btn-primary mt-3">See All</button>
             </Link>
           </div>

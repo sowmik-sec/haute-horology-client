@@ -19,6 +19,7 @@ import ReportedItems from "../../pages/Dashboard/admin/ReportedItems/ReportedIte
 import Payment from "../../pages/Dashboard/buyer/Payment/Payment";
 import DisplayError from "../../shared/DisplayError/DisplayError";
 import Home from "../../pages/Home/Home/Home";
+import AdvertiseAll from "../../pages/AdvertiseAll/AdvertiseAll";
 
 const routes = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/advertise-all",
+        element: <AdvertiseAll />,
       },
       {
         path: "/login",
