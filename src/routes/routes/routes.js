@@ -16,6 +16,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import AllSellers from "../../pages/Dashboard/admin/AllSellers/AllSellers";
 import AllBuyers from "../../pages/Dashboard/admin/AllBuyers/AllBuyers";
 import ReportedItems from "../../pages/Dashboard/admin/ReportedItems/ReportedItems";
+import Payment from "../../pages/Dashboard/buyer/Payment/Payment";
 
 const routes = createBrowserRouter([
   {
@@ -87,6 +88,14 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-orders/payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment />
           </PrivateRoute>
         ),
       },

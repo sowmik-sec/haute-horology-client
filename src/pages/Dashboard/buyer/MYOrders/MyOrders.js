@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { AuthContext } from "../../../../context/AuthProvider";
 import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
@@ -74,7 +75,9 @@ const MyOrders = () => {
                 <td>{order.price}</td>
                 <td>
                   {order.paymentStatus === "unpaid" ? (
-                    <button className="btn btn-primary btn-sm">Pay</button>
+                    <Link to={`payment/${order._id}`}>
+                      <button className="btn btn-primary btn-sm">Pay</button>
+                    </Link>
                   ) : (
                     <p className="text-green-400">Paid</p>
                   )}
