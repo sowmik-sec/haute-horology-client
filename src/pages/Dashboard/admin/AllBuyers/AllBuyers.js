@@ -28,11 +28,11 @@ const AllBuyers = () => {
             </tr>
           </thead>
           <tbody>
-            {buyers?.map((seller, i) => (
-              <tr key={seller._id} className="hover">
+            {buyers?.map((buyer, i) => (
+              <tr key={buyer._id} className="hover">
                 <th>{i + 1}</th>
-                <td>{seller.name}</td>
-                <td>{seller.email}</td>
+                <td>{buyer.name}</td>
+                <td>{buyer.email}</td>
               </tr>
             ))}
           </tbody>
