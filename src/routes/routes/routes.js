@@ -17,11 +17,13 @@ import AllSellers from "../../pages/Dashboard/admin/AllSellers/AllSellers";
 import AllBuyers from "../../pages/Dashboard/admin/AllBuyers/AllBuyers";
 import ReportedItems from "../../pages/Dashboard/admin/ReportedItems/ReportedItems";
 import Payment from "../../pages/Dashboard/buyer/Payment/Payment";
+import DisplayError from "../../shared/DisplayError/DisplayError";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <DisplayError />,
     children: [
       {
         path: "/login",
@@ -66,6 +68,7 @@ const routes = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
+    errorElement: <DisplayError />,
     children: [
       {
         path: "add-watch",
@@ -98,6 +101,12 @@ const routes = createBrowserRouter([
             <Payment />
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/orders/${params.id}`, {
+            headers: {
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }),
       },
       {
         path: "all-sellers",
