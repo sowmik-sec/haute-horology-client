@@ -18,7 +18,7 @@ const FeaturedBrands = () => {
       {featuredBrands && (
         <>
           <h3 className="text-3xl my-5 ml-3 font-bold">Featured Brands</h3>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+          <div className="grid gap-7 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
             {featuredBrands.map((brand) => (
               <Brand key={brand._id} brand={brand} />
             ))}
