@@ -72,14 +72,14 @@ const MyOrders = () => {
               <tr key={order._id}>
                 <th>{i + 1}</th>
                 <td>{order.model}</td>
-                <td>{order.price}</td>
+                <td>${order.price}</td>
                 <td>
                   {order.paymentStatus === "unpaid" ? (
                     <Link to={`payment/${order._id}`}>
                       <button className="btn btn-primary btn-sm">Pay</button>
                     </Link>
                   ) : (
-                    <p className="text-green-400">Paid</p>
+                    <p className="text-green-600">Paid</p>
                   )}
                 </td>
                 <td>

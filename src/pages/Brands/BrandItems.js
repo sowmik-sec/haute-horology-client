@@ -1,10 +1,14 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import BrandItem from "./BrandItem";
+import LoaderSpinner from "../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 
 const BrandItems = () => {
   const items = useLoaderData();
-  console.log(items);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <LoaderSpinner />;
+  }
   return (
     <div className="flex flex-wrap justify-around mt-10">
       {items.map((item) => (

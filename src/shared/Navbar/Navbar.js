@@ -10,9 +10,9 @@ const Navbar = () => {
   const [isSeller, isSellerLoading] = useSeller(user?.email);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const location = useLocation();
-  if (isSellerLoading || isAdminLoading) {
-    return <LoaderSpinner />;
-  }
+  // if (isSellerLoading || isAdminLoading) {
+  //   return <LoaderSpinner />;
+  // }
 
   const handleLogOut = () => {
     logout()
