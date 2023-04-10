@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 
 const AllSellers = () => {
   const { isLoading, data: sellers } = useQuery({
@@ -11,7 +12,9 @@ const AllSellers = () => {
         },
       }).then((res) => res.json()),
   });
-  console.log(sellers);
+  if (isLoading) {
+    return <LoaderSpinner />;
+  }
   return (
     <div>
       <h3>All sellers</h3>
