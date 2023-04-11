@@ -14,18 +14,21 @@ const MyWatches = () => {
   } = useQuery({
     queryKey: ["watches", user.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/watches?email=${user.email}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://houte-horology-server.vercel.app/watches?email=${user.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
   if (isLoading) {
     return <LoaderSpinner />;
   }
   console.log(watches);
   const handleAdvertise = (id) => {
-    fetch(`http://localhost:5000/watches/${id}`, {
+    fetch(`https://houte-horology-server.vercel.app/watches/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -39,7 +42,7 @@ const MyWatches = () => {
       });
   };
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/watches/${id}`, {
+    fetch(`https://houte-horology-server.vercel.app/watches/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

@@ -10,7 +10,9 @@ const Brands = () => {
   const { isLoading, data: brands } = useQuery({
     queryKey: "brands",
     queryFn: () =>
-      fetch(`http://localhost:5000/brands`).then((res) => res.json()),
+      fetch(`https://houte-horology-server.vercel.app/brands`).then((res) =>
+        res.json()
+      ),
   });
   if (isLoading) {
     return <LoaderSpinner />;

@@ -6,7 +6,7 @@ const AllBuyers = () => {
   const { isLoading, data: buyers } = useQuery({
     queryKey: ["buyers-all"],
     queryFn: () =>
-      fetch(`http://localhost:5000/buyers-all`, {
+      fetch(`https://houte-horology-server.vercel.app/buyers-all`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },

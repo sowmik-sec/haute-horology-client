@@ -8,7 +8,9 @@ const FeaturedBrands = () => {
   const { isLoading, data: featuredBrands } = useQuery({
     queryKey: ["featured-brand"],
     queryFn: () =>
-      fetch(`http://localhost:5000/featured-brand`).then((res) => res.json()),
+      fetch(`https://houte-horology-server.vercel.app/featured-brand`).then(
+        (res) => res.json()
+      ),
   });
   if (isLoading) {
     return <LoaderSpinner />;

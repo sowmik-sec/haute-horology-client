@@ -6,7 +6,7 @@ const WatchCollections = () => {
   const [watches, setWatches] = useState("");
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/watches/all`, {
+    fetch(`https://houte-horology-server.vercel.app/watches/all`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },

@@ -51,11 +51,14 @@ const routes = createBrowserRouter([
         path: "/brands/:brand",
         element: <BrandItems />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/watches/brand/${params.brand}`, {
-            headers: {
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
-            },
-          }),
+          fetch(
+            `https://houte-horology-server.vercel.app/watches/brand/${params.brand}`,
+            {
+              headers: {
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              },
+            }
+          ),
       },
       {
         path: "/brands/:brand/:id",
@@ -112,11 +115,14 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/orders/${params.id}`, {
-            headers: {
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
-            },
-          }),
+          fetch(
+            `https://houte-horology-server.vercel.app/orders/${params.id}`,
+            {
+              headers: {
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              },
+            }
+          ),
       },
       {
         path: "all-sellers",

@@ -6,7 +6,7 @@ const AdvertiseAll = () => {
   const [advertised, setAdvertised] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:5000/advertised-all-seller`)
+    fetch(`https://houte-horology-server.vercel.app/advertised-all-seller`)
       .then((res) => res.json())
       .then((data) => {
         setAdvertised(data);

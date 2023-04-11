@@ -16,18 +16,24 @@ const BrandItemDetails = () => {
   const { isLoading, data: watchDetails } = useQuery({
     queryKey: ["single-brand", watchId],
     queryFn: () =>
-      fetch(`http://localhost:5000/watches/single-brand/${watchId}`, {
+      fetch(
+        `https://houte-horology-server.vercel.app/watches/single-brand/${watchId}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then((res) => res.json()),
+  });
+  useEffect(() => {
+    fetch(
+      `https://houte-horology-server.vercel.app/user?email=${watchDetails?.sellerEmail}`,
+      {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
-      }).then((res) => res.json()),
-  });
-  useEffect(() => {
-    fetch(`http://localhost:5000/user?email=${watchDetails?.sellerEmail}`, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setSeller(data);
@@ -38,12 +44,15 @@ const BrandItemDetails = () => {
     return <LoaderSpinner />;
   }
   const handleReport = (id) => {
-    fetch(`http://localhost:5000/watches/single-brand/${id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://houte-horology-server.vercel.app/watches/single-brand/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {

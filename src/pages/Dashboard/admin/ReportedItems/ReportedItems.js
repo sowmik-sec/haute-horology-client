@@ -6,7 +6,7 @@ const ReportedItems = () => {
   const { isLoading, data: reported } = useQuery({
     queryKey: ["reported-items"],
     queryFn: () =>
-      fetch(`http://localhost:5000/reported-items`, {
+      fetch(`https://houte-horology-server.vercel.app/reported-items`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },

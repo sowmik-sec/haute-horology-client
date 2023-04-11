@@ -14,18 +14,21 @@ const MyOrders = () => {
   } = useQuery({
     queryKey: ["my-orders", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/my-orders?email=${user?.email}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }).then((res) => res.json()),
+      fetch(
+        `https://houte-horology-server.vercel.app/my-orders?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
   console.log(orders);
   if (isLoading) {
     return <LoaderSpinner />;
   }
   const handleDelete = (order) => {
-    fetch(`http://localhost:5000/my-orders/${order._id}`, {
+    fetch(`https://houte-horology-server.vercel.app/my-orders/${order._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -39,7 +42,7 @@ const MyOrders = () => {
       });
   };
   const updateWatchStatus = (id) => {
-    fetch(`http://localhost:5000/my-orders/${id}`, {
+    fetch(`https://houte-horology-server.vercel.app/my-orders/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

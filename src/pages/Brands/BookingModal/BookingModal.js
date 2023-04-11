@@ -22,7 +22,7 @@ const BookingModal = ({ watch, setControlModal }) => {
       price: watch.rPrice,
       paymentStatus: "unpaid",
     };
-    fetch(`http://localhost:5000/watch/buy`, {
+    fetch(`https://houte-horology-server.vercel.app/watch/buy`, {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const BookingModal = ({ watch, setControlModal }) => {
       });
   };
   const updateWatchDetails = (id) => {
-    fetch(`http://localhost:5000/watch/${id}`, {
+    fetch(`https://houte-horology-server.vercel.app/watch/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

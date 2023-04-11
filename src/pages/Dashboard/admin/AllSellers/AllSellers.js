@@ -7,7 +7,7 @@ const AllSellers = () => {
   const { isLoading, data: sellers } = useQuery({
     queryKey: ["sellers-all"],
     queryFn: () =>
-      fetch(`http://localhost:5000/sellers-all`, {
+      fetch(`https://houte-horology-server.vercel.app/sellers-all`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -17,7 +17,7 @@ const AllSellers = () => {
     return <LoaderSpinner />;
   }
   const handleVerify = (id) => {
-    fetch(`http://localhost:5000/seller-verify/${id}`, {
+    fetch(`https://houte-horology-server.vercel.app/seller-verify/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

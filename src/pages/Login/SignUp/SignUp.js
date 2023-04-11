@@ -44,7 +44,7 @@ const SignUp = () => {
 
   const userFn = (name, email, role) => {
     const mkUser = { name, email, role };
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://houte-horology-server.vercel.app/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

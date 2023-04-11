@@ -24,7 +24,7 @@ const AddProduct = () => {
       purchase: data.purchase,
       status: "unsold",
     };
-    fetch(`http://localhost:5000/watches`, {
+    fetch(`https://houte-horology-server.vercel.app/watches`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
