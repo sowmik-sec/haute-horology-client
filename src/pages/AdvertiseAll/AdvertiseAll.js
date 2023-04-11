@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoaderSpinner from "../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 import BrandItem from "../Brands/BrandItem";
-import { Link } from "react-router-dom";
 
 const AdvertiseAll = () => {
   const [advertised, setAdvertised] = useState([]);
