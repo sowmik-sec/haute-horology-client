@@ -11,6 +11,7 @@ const AddProduct = () => {
   const handleAddProduct = (data) => {
     const watch = {
       sellerEmail: user.email,
+      sellerName: user.displayName,
       model: data.model,
       watchImg: data.watchImg,
       rPrice: data.rPrice,

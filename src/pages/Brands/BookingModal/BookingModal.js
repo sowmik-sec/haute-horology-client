@@ -70,37 +70,37 @@ const BookingModal = ({ watch, setControlModal }) => {
               type="text"
               value={user?.displayName}
               readOnly
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             <input
               type="text"
               value={user?.email}
               readOnly
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             <input
               type="text"
               value={watch.model}
               readOnly
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             <input
               type="text"
               value={watch.rPrice}
               readOnly
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             <input
               type="text"
               {...register("phone")}
               placeholder="Phone number"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             <input
               type="text"
               {...register("meetingLocation")}
               placeholder="Meeting Location"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             <input
               type="submit"

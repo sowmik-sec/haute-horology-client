@@ -10,7 +10,7 @@ const BrandItems = () => {
     return <LoaderSpinner />;
   }
   return (
-    <div className="flex flex-wrap justify-around mt-10">
+    <div className="flex flex-wrap justify-around my-10">
       {items.map((item) => (
         <BrandItem key={item._id} item={item} />
       ))}

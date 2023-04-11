@@ -21,8 +21,8 @@ const WatchCollections = () => {
     return <LoaderSpinner />;
   }
   return (
-    <div>
-      <h2 className="text-4xl">Our Collection</h2>
+    <div className="my-10">
+      <h2 className="text-4xl ml-2">Our Collection</h2>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mt-10">
         {watches.map((watch) => (
           <BrandItem key={watch._id} item={watch} />

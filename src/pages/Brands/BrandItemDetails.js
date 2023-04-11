@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LoaderSpinner from "../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 import { useQuery } from "react-query";
 import BookingModal from "./BookingModal/BookingModal";
 import { toast } from "react-hot-toast";
+import VerifyTick from "../../shared/VerifyTick/VerifyTick";
 
 const BrandItemDetails = () => {
   const [controlModal, setControlModal] = useState(true);
+  const [seller, setSeller] = useState(null);
   const location = useLocation();
   const path = location.pathname.split("/");
   const navigate = useNavigate();
   const watchId = path[path.length - 1];
   const { isLoading, data: watchDetails } = useQuery({
-    queryKey: [],
+    queryKey: ["single-brand", watchId],
     queryFn: () =>
       fetch(`http://localhost:5000/watches/single-brand/${watchId}`, {
         headers: {
@@ -20,6 +22,18 @@ const BrandItemDetails = () => {
         },
       }).then((res) => res.json()),
   });
+  useEffect(() => {
+    fetch(`http://localhost:5000/user?email=${watchDetails?.sellerEmail}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setSeller(data);
+      });
+  }, [watchDetails?.sellerEmail]);
+
   if (isLoading) {
     return <LoaderSpinner />;
   }
@@ -46,7 +60,12 @@ const BrandItemDetails = () => {
           <div>
             <h1 className="text-5xl font-bold">{watchDetails.model}</h1>
             <div className="py-6">
-              <p>Seller: {watchDetails.sellerName}</p>
+              <div className="flex items-center">
+                <p>Seller: {watchDetails?.sellerName}</p>
+                <span className="ml-1">
+                  {seller?.isVerified && <VerifyTick />}
+                </span>
+              </div>
               <p>Original Price: ${watchDetails.oPrice}</p>
               <p>Resell Price: ${watchDetails.rPrice}</p>
               <p>Purchased: {watchDetails.purchase}</p>
