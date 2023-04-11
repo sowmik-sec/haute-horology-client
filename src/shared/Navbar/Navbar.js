@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import useSeller from "../../hooks/useSeller";
 import useAdmin from "../../hooks/useAdmin";
-import LoaderSpinner from "./LoaderSpinner/LoaderSpinner";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -29,9 +28,6 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/watch-collection">Watch Collections</NavLink>
-      </li>
-      <li>
-        <NavLink to="/">About</NavLink>
       </li>
       <li>
         <NavLink
