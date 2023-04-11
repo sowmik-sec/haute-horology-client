@@ -2,8 +2,10 @@ import React from "react";
 import { useQuery } from "react-query";
 import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 import { toast } from "react-hot-toast";
+import useTitle from "../../../../hooks/useTitle";
 
 const AllSellers = () => {
+  useTitle("All Sellers");
   const { isLoading, data: sellers } = useQuery({
     queryKey: ["sellers-all"],
     queryFn: () =>

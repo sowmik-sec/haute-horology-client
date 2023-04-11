@@ -7,8 +7,10 @@ import useSeller from "../hooks/useSeller";
 import "./DashboardLayout.css";
 import useBuyer from "../hooks/useBuyer";
 import LoaderSpinner from "../shared/Navbar/LoaderSpinner/LoaderSpinner";
+import useTitle from "../hooks/useTitle";
 
 const DashboardLayout = () => {
+  useTitle("Dashboard");
   const { user } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const [isSeller, isSellerLoading] = useSeller(user?.email);

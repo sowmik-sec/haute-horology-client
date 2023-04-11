@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import Brand from "./Brand";
 import LoaderSpinner from "../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 import { useQuery } from "react-query";
+import useTitle from "../../hooks/useTitle";
 
 const Brands = () => {
   //   const [brands, setBrands] = useState([]);
-
+  useTitle("Brands");
   const { isLoading, data: brands } = useQuery({
     queryKey: "brands",
     queryFn: () =>

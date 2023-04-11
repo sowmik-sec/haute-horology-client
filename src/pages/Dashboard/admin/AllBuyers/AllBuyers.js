@@ -1,8 +1,10 @@
 import React from "react";
 import { useQuery } from "react-query";
 import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
+import useTitle from "../../../../hooks/useTitle";
 
 const AllBuyers = () => {
+  useTitle("All Buyers");
   const { isLoading, data: buyers } = useQuery({
     queryKey: ["buyers-all"],
     queryFn: () =>

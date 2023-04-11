@@ -4,8 +4,10 @@ import { AuthContext } from "../../../../context/AuthProvider";
 import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import useTitle from "../../../../hooks/useTitle";
 
 const MyOrders = () => {
+  useTitle("My Orders");
   const { user } = useContext(AuthContext);
   const {
     isLoading,

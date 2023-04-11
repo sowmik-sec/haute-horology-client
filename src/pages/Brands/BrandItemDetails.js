@@ -5,8 +5,10 @@ import { useQuery } from "react-query";
 import BookingModal from "./BookingModal/BookingModal";
 import { toast } from "react-hot-toast";
 import VerifyTick from "../../shared/VerifyTick/VerifyTick";
+import useTitle from "../../hooks/useTitle";
 
 const BrandItemDetails = () => {
+  useTitle("Watch Details");
   const [controlModal, setControlModal] = useState(true);
   const [seller, setSeller] = useState(null);
   const location = useLocation();

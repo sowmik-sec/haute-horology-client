@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import BrandItem from "../Brands/BrandItem";
 import LoaderSpinner from "../../shared/Navbar/LoaderSpinner/LoaderSpinner";
+import useTitle from "../../hooks/useTitle";
 
 const WatchCollections = () => {
+  useTitle("Watch Collection");
   const [watches, setWatches] = useState("");
   const [loading, setLoading] = useState(true);
   useEffect(() => {

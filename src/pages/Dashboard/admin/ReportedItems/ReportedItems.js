@@ -1,8 +1,10 @@
 import React from "react";
 import { useQuery } from "react-query";
 import LoaderSpinner from "../../../../shared/Navbar/LoaderSpinner/LoaderSpinner";
+import useTitle from "../../../../hooks/useTitle";
 
 const ReportedItems = () => {
+  useTitle("Reported Items");
   const { isLoading, data: reported } = useQuery({
     queryKey: ["reported-items"],
     queryFn: () =>

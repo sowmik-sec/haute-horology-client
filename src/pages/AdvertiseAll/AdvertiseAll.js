@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import LoaderSpinner from "../../shared/Navbar/LoaderSpinner/LoaderSpinner";
 import BrandItem from "../Brands/BrandItem";
+import useTitle from "../../hooks/useTitle";
 
 const AdvertiseAll = () => {
+  useTitle("Advertised Items");
   const [advertised, setAdvertised] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
